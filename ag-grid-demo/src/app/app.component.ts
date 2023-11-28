@@ -77,7 +77,7 @@ export class AppComponent implements OnInit {
         }
         return '';
       },
-      //editType: 'fullRow',
+      editType: 'fullRow',
       onRowValueChanged: this.RowValueChanged.bind(this),
       stopEditingWhenCellsLoseFocus: true,
     }
