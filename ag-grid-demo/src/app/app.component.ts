@@ -17,8 +17,6 @@ export class AppComponent implements OnInit {
   private BindInspection: Lookup[] = [];
   private BindLocation: Lookup[] = [];
 
-  InspectID: any;
-
   constructor() {
     this.BindInspectionIssue = [];
     this.GetIssueLookUp();
@@ -46,8 +44,8 @@ export class AppComponent implements OnInit {
               params.data.InspectionId = x.LkpId;
               params.data.LocationBuildingText = '';
               params.data.LocationId = null;
-              this.InspectID = params.data.InspectionId;
-              this.GetIssueLocation(this.InspectID);
+              params.api.refreshCells({ columns: ["InspectionText", "LocationBuildingText"] });
+              this.GetIssueLocation(params);
             }
           }
         },
@@ -203,7 +201,7 @@ export class AppComponent implements OnInit {
     })
   }
 
-  GetIssueLocation(param: any) {
+  GetIssueLocation(params: any) {
     this.BindLocation = [
       {
         "LkpId": 6303,
@@ -247,7 +245,7 @@ export class AppComponent implements OnInit {
       }
     ];
 
-    this.BindLocation = this.BindLocation.filter(x => x.InspectionId == this.InspectID);
+    this.BindLocation = this.BindLocation.filter(x => x.InspectionId == params.data.InspectionId);
 
     this.locationText = [];
 
